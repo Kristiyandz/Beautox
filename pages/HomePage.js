@@ -3,10 +3,18 @@ import { Platform, StyleSheet, Text, View, Button, TouchableHighlight } from 're
 import LinearGradient from 'react-native-linear-gradient';
 
 
+import Icon from 'react-native-vector-icons/Entypo';
+import SocialIcon from 'react-native-vector-icons/AntDesign';
+const locationIcon = (<Icon name="location-pin" size={30} color="purple" />)
+const linkedInIcon = (<SocialIcon name="linkedin-square" size={30} color="purple" />)
+const instagramIcon = (<SocialIcon name="instagram" size={30} color="purple" />)
+const facebookIcon = (<SocialIcon name="facebook-square" size={30} color="purple" />)
+
+
 class Home extends Component {
   static navigationOptions = {
     title: "Home",
-    headerStyle: { backgroundColor: 'blue' }
+    headerStyle: { backgroundColor: 'purple' }
   }
   render() {
     return (
@@ -14,12 +22,24 @@ class Home extends Component {
       //   <Text>Home Page</Text>
       //   <Button onPress={() => this.props.navigation.navigate('About')} title="All about me" />
       // </View>
-      <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
-        <Text>
-          Sign in with Facebook
-        </Text>
-        <Button title="About" onPress={() => this.props.navigation.navigate('About')}
-        />
+      <LinearGradient colors={['#081e4b', '#1f2d71', '#3e3a97', '#6445bc', '#8f4ddf']} style={styles.container}>
+        <View style={styles.boxOne}>
+
+        </View>
+        <View style={styles.boxTwo}>
+          <View style={styles.boxTwoInnerLeft}>
+            
+            <Text>{locationIcon}Hattersley</Text>
+          </View>
+          <View style={styles.boxTwoInnerRight}>
+            {linkedInIcon}{instagramIcon}{facebookIcon}
+          </View>
+        </View>
+        <View style={styles.boxThree}>
+          <View style={styles.buttonBox}>
+              <Button onPress={() => this.props.navigation.navigate('About')} title="All about me" />
+            </View>
+        </View>
       </LinearGradient>
     );
   }
@@ -29,9 +49,41 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+      
     },
+    boxOne: {
+      flex: 5,
+      backgroundColor: 'transparent',
+      justifyContent: 'center'
+    },
+    boxTwo: {
+      flex: 0.5,
+      flexDirection: 'row',
+      backgroundColor: 'transparent',
+      justifyContent: 'center'
+    },
+    boxThree: {
+      flex: 3,
+      backgroundColor: 'transparent',
+      justifyContent: 'center'
+    },
+    boxTwoInnerLeft: {
+      flex: 1,
+      backgroundColor: 'transparent',
+      alignItems: 'center',
+      // justifyContent: '',
+      flexDirection:'row'
+    },
+    boxTwoInnerRight: {
+      flex: 1,
+      backgroundColor: 'transparent',
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      alignItems: 'center'
+    },
+    buttonBox: {
+      justifyContent: 'center'
+    }
   });
   
 export default Home;
