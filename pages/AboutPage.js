@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, FlatList} from 'react-native';
+import { bookIcon, calendarIcon, questionIcon, externalLinkIcon } from '../icons/AboutPageIcons.js';
 
-
-import Icon from 'react-native-vector-icons/Entypo';
-import SocialIcon from 'react-native-vector-icons/AntDesign';
-
-const locationIcon = (<Icon name="location-pin" size={30} color="purple" />)
-const linkedInIcon = (<SocialIcon name="linkedin-square" size={30} color="purple" />)
-const instagramIcon = (<SocialIcon name="instagram" size={30} color="purple" />)
-const facebookIcon = (<SocialIcon name="facebook-square" size={30} color="purple" />)
 
 class AboutMe extends Component {
     static navigationOptions = {
@@ -28,14 +21,15 @@ class AboutMe extends Component {
 
           </View>
           <View style={styles.bottomBox}>
-          <FlatList
+            <FlatList
+            contentContainerStyle={styles.listItem}
             data={[
-              {key: `Book a Consultation`},
-              {key: 'Availability'},
-              {key: 'FAQ'},
-              {key: 'Useful Links'}
+              {key: 'Book a free apointment', icon: bookIcon},
+              {key: 'Availability', icon:calendarIcon},
+              {key: 'FAQ', icon: questionIcon},
+              {key: 'Useful Links', icon: externalLinkIcon},
             ]}
-            renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+            renderItem={({item}) => <Text style={styles.text}>{item.icon}{item.key}</Text>}
           />
           </View>
         </View>
@@ -59,7 +53,9 @@ class AboutMe extends Component {
     },
     bottomBox: {
       flex:4,
-      backgroundColor: 'orange'
+      backgroundColor: 'orange',
+      padding: 20
+      
     },
     circle: {
       width: 160,
@@ -73,7 +69,15 @@ class AboutMe extends Component {
       height: 180,
       borderRadius: 180/2,
       backgroundColor: 'black'
-  }
+  },
+    listItem: {
+      flex:1,
+      justifyContent: 'center' 
+    },
+    text: {
+      fontSize: 20,
+    }
+  
   });
   
 
