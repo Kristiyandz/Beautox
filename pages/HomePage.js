@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {locationIcon, linkedInIcon, instagramIcon, facebookIcon} from '../icons/HomePageIcons.js';
 
 
-import Icon from 'react-native-vector-icons/Entypo';
-import SocialIcon from 'react-native-vector-icons/AntDesign';
-
-const locationIcon = (<Icon name="location-pin" size={30} color="purple" />)
-const linkedInIcon = (<SocialIcon name="linkedin-square" size={30} color="purple" />)
-const instagramIcon = (<SocialIcon name="instagram" size={30} color="purple" />)
-const facebookIcon = (<SocialIcon name="facebook-square" size={30} color="purple" />)
 
 
 class Home extends Component {
