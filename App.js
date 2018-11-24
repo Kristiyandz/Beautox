@@ -9,9 +9,7 @@ import AvailabilityPage from './pages/AvailabilityPage.js';
 import FaqPage from './pages/FaqPage.js';
 import UsefulLinksPage from './pages/UsefulLinksPage.js';
 
-
-
-
+// Routing
 const AppScreens = createStackNavigator({
   Home: Home,
   About: AboutMe,
@@ -21,6 +19,7 @@ const AppScreens = createStackNavigator({
   Links: UsefulLinksPage
 });
 
+// Create route container
 const App = createAppContainer(AppScreens);
 
 export default App;
