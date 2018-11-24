@@ -20,22 +20,22 @@ class AboutMe extends Component {
           </View>
           <View style={styles.bottomBox}>
             <FlatList
-            contentContainerStyle={styles.listItem}
-            data={[
-              {key: 'Book a free apointment', page:'Book', icon: bookIcon},
-              {key: 'Availability', page:'Availability', icon:calendarIcon},
-              {key: 'FAQ', page:'Faq', icon: questionIcon},
-              {key: 'Useful Links', page: 'Links', icon: externalLinkIcon},
-            ]}
-            onPress={() => this.props.navigation.navigate('Book')}
-            renderItem={({item}) => {
-                return (
-                  <TouchableHighlight onPress={() => this.props.navigation.navigate(`${item.page}`)}>
-                     <Text >{item.icon}{item.key}</Text>
-                  </TouchableHighlight>
-                )
-            }}
-          />
+              contentContainerStyle={styles.listItem}
+              data={[
+                {key: 'Book a free apointment', page:'Book', icon: bookIcon},
+                {key: 'Availability', page:'Availability', icon:calendarIcon},
+                {key: 'FAQ', page:'Faq', icon: questionIcon},
+                {key: 'Useful Links', page: 'Links', icon: externalLinkIcon},
+              ]}
+              onPress={() => this.props.navigation.navigate('Book')}
+              renderItem={({item}) => {
+                  return (
+                    <TouchableHighlight onPress={() => this.props.navigation.navigate(`${item.page}`)}>
+                      <Text >{item.icon}{item.key}</Text>
+                    </TouchableHighlight>
+                  )
+              }}
+            />
           </View>
         </View>
       );
