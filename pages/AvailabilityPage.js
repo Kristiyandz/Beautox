@@ -3,6 +3,9 @@ import { Platform, StyleSheet, Text, View, Button, TouchableHighlight } from 're
 import LinearGradient from 'react-native-linear-gradient';
 
 class AvailabilityPage extends Component {
+    static navigationOptions = {
+        title: 'Available Time'
+    }
     render(){
         return(
             <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
