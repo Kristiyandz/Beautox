@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Button, FlatList} from 'react-native';
+import { Platform, StyleSheet, Text, View, TouchableHighlight, FlatList} from 'react-native';
 import { bookIcon, calendarIcon, questionIcon, externalLinkIcon } from '../icons/AboutPageIcons.js';
 
 
@@ -10,8 +10,6 @@ class AboutMe extends Component {
     render() {
       return (
         <View style={styles.container}>
-          {/* <Text>Home Page</Text>
-          <Button onPress={() => this.props.navigation.goBack()} title="<< Back" /> */}
           <View style={styles.topBox}>
           <View style={styles.circleOuter} />
             <View style={styles.circle} />
@@ -24,12 +22,19 @@ class AboutMe extends Component {
             <FlatList
             contentContainerStyle={styles.listItem}
             data={[
-              {key: 'Book a free apointment', icon: bookIcon},
-              {key: 'Availability', icon:calendarIcon},
-              {key: 'FAQ', icon: questionIcon},
-              {key: 'Useful Links', icon: externalLinkIcon},
+              {key: 'Book a free apointment', page:'Book', icon: bookIcon},
+              {key: 'Availability', page:'Availability', icon:calendarIcon},
+              {key: 'FAQ', page:'Faq', icon: questionIcon},
+              {key: 'Useful Links', page: 'Links', icon: externalLinkIcon},
             ]}
-            renderItem={({item}) => <Text style={styles.text}>{item.icon}{item.key}</Text>}
+            onPress={() => this.props.navigation.navigate('Book')}
+            renderItem={({item}) => {
+                return (
+                  <TouchableHighlight onPress={() => this.props.navigation.navigate(`${item.page}`)}>
+                     <Text >{item.icon}{item.key}</Text>
+                  </TouchableHighlight>
+                )
+            }}
           />
           </View>
         </View>
@@ -42,7 +47,7 @@ class AboutMe extends Component {
       flex: 1
     },
     topBox: {
-      flex:2,
+      flex:3,
       backgroundColor: 'red',
       justifyContent:'center',
       alignItems: 'center'
