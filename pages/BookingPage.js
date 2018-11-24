@@ -1,7 +1,8 @@
 import React ,{ Component } from 'react';
-import { Platform, StyleSheet, Text, View, TouchableHighlight, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextInput } from 'react-native-paper';
+import TextArea from './BookingSubComp/TextArea.js';
 
 class BookingPage extends Component {
     state =  {
@@ -10,82 +11,91 @@ class BookingPage extends Component {
         phoneNumber: '',
         email: '',
         address: '',
-        message: ''
+        message: '',
     }
     static navigationOptions = {
-        title: 'Book'
+        title: 'Book',
+        headerStyle: { backgroundColor: '#a366ff'}
+    }
+    changeHandler = (message) => {
+        this.setState({ message });
     }
     render(){
         return(
-           
-            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
-                <ScrollView >
-                    <View style={styles.innerView}>
-                        <Text>This is the booking page</Text>
-                        <TextInput
-                            style={styles.input}
-                            label='First Name'
-                            mode="flat"
-                            placeholder="Enter first name..."
-                            value={this.state.text}
-                            onChangeText={firstName => this.setState({ firstName })}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            label='Last Name'
-                            mode="flat"
-                            placeholder="Enter last name..."
-                            value={this.state.text}
-                            onChangeText={lastName => this.setState({ lastName })}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            label='Phone number'
-                            mode="flat"
-                            placeholder="Enter phone number..."
-                            value={this.state.text}
-                            onChangeText={phoneNumber => this.setState({ phoneNumber })}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            label='Email'
-                            mode="flat"
-                            placeholder="Enter email..."
-                            value={this.state.text}
-                            onChangeText={email => this.setState({ email })}
-                        />
-                        <TextInput
-                            style={styles.input}
-                            label='Address'
-                            mode="flat"
-                            placeholder="Enter address..."
-                            value={this.state.text}
-                            onChangeText={address => this.setState({ address })}
-                        />
-                        <View style={styles.textAreaContainer}>
+            <LinearGradient colors={['#985EC2', '#4D73D5', '#0080D3','#0087BF','#008A9E','#00897A']} style={styles.container}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <KeyboardAvoidingView styles={{flex: 1}} 
+                        behavior = 'padding'  enabled>
+                        <View style={styles.innerView}>
+                            <Text>This is the booking page</Text>
                             <TextInput
-                                style={styles.textArea}
-                                multiline={true}
-                                numberOfLines={4}
-                                placeholder="Enter message..."
-                                onChangeText={message => this.setState({ message })}
-                                value={this.state.message}
+                                style={styles.input}
+                                label={<Text style={{color: 'white'}}>First name</Text>}
+                                mode="flat"
+                                placeholder="Enter first name..."
+                                value={this.state.text}
+                                underlineColor="rgba(255,255,255,0.3)"
+                                onChangeText={firstName => this.setState({ firstName })}
+                                theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
                             />
-                        </View>
+                            <TextInput
+                                style={styles.input}
+                                label={<Text style={{color: 'white'}}>Last name</Text>}
+                                mode="flat"
+                                placeholder="Enter last name..."
+                                value={this.state.text}
+                                underlineColor="rgba(255,255,255,0.3)"
+                                onChangeText={lastName => this.setState({ lastName })}
+                                theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                label={<Text style={{color: 'white'}}>Phone number</Text>}
+                                mode="flat"
+                                placeholder="Enter phone number..."
+                                value={this.state.text}
+                                underlineColor="rgba(255,255,255,0.3)"
+                                onChangeText={phoneNumber => this.setState({ phoneNumber })}
+                                theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                label={<Text style={{color: 'white'}}>Email</Text>}
+                                mode="flat"
+                                placeholder="Enter email..."
+                                value={this.state.text}
+                                underlineColor="rgba(255,255,255,0.3)"
+                                onChangeText={email => this.setState({ email })}
+                                theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                label={<Text style={{color: 'white'}}>Address</Text>}
+                                mode="flat"
+                                placeholder="Enter address..."
+                                value={this.state.text}
+                                underlineColor="rgba(255,255,255,0.3)"
+                                onChangeText={address => this.setState({ address })}
+                                theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
+                            />
+                            <View style={styles.textAreaContainer}>
+                                {this.props.children}
+                                <TextArea onChange={this.changeHandler} />
+                            </View>
 
-                        <View style={styles.buttonContainer}>
-                            <TouchableHighlight 
-                                style={styles.submitButton}
-                                // onPress={()=> this.submitDetails()}
-                                >
-                                <Text>Submit</Text>
-                            </TouchableHighlight>
-                        </View>
+                            <View style={styles.buttonContainer}>
+                                <TouchableHighlight 
+                                    style={styles.submitButton}
+                                    // onPress={()=> this.submitDetails()}
+                                    >
+                                    <Text>Submit</Text>
+                                </TouchableHighlight>
+                            </View>
                         
-                    </View>
+                        </View>
+                    </KeyboardAvoidingView>
                 </ScrollView>
             </LinearGradient>
-            
         );
     };
     submitDetails() {
@@ -141,7 +151,8 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: 'transparent',
         width: width * .8,
-        marginTop: 20
+        marginTop: 20,
+        color: 'red'
     },
     textAreaContainer: {
         marginTop: 50
