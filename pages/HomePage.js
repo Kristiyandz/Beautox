@@ -13,10 +13,6 @@ class Home extends Component {
   }
   render() {
     return (
-      // <View style={styles.container}>
-      //   <Text>Home Page</Text>
-      //   <Button onPress={() => this.props.navigation.navigate('About')} title="All about me" />
-      // </View>
       <LinearGradient colors={['#081e4b', '#1f2d71', '#3e3a97', '#6445bc', '#8f4ddf']} style={styles.container}>
         <View style={styles.boxOne}>
 
