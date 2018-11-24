@@ -3,6 +3,9 @@ import { Platform, StyleSheet, Text, View, Button, TouchableHighlight } from 're
 import LinearGradient from 'react-native-linear-gradient';
 
 class BookingPage extends Component {
+    static navigationOptions = {
+        title: 'Book'
+    }
     render(){
         return(
             <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
