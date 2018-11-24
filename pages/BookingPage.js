@@ -74,7 +74,10 @@ class BookingPage extends Component {
                         </View>
 
                         <View style={styles.buttonContainer}>
-                            <TouchableHighlight style={styles.submitButton}>
+                            <TouchableHighlight 
+                                style={styles.submitButton}
+                                // onPress={()=> this.submitDetails()}
+                                >
                                 <Text>Submit</Text>
                             </TouchableHighlight>
                         </View>
@@ -85,6 +88,40 @@ class BookingPage extends Component {
             
         );
     };
+    submitDetails() {
+
+        const { firstName, lastName, phoneNumber, email, address, message} = this.state;
+        const payload = {
+            firstName: firstName,
+            lastName: lastName,
+            phoneNumber: phoneNumber,
+            email: email,
+            address: address,
+            message: message
+        };
+        const dataToSend = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'applciation/json',
+            },
+            body: JSON.stringify(payload)
+        };
+
+        fetch('some ednpoint', dataToSend)
+            .then((answer) => answer.json())
+            .then((data) => {
+                if(data){
+                    // open the confirm page
+                } else {
+                    // display error message
+                };
+            });
+            /*
+                The answer from the POST request will be used
+                to see if the request was successfull or not.
+            */
+    }
 };
 
 let width = Dimensions.get('window').width;
