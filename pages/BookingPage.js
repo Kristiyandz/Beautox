@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView, Animated } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextInput } from 'react-native-paper';
 import TextArea from './BookingSubComp/TextArea.js';
@@ -101,6 +101,7 @@ class BookingPage extends Component {
     submitDetails() {
 
         const { firstName, lastName, phoneNumber, email, address, message} = this.state;
+
         const payload = {
             firstName: firstName,
             lastName: lastName,
