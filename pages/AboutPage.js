@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TouchableHighlight, FlatList} from 'react-native';
+import { Image, 
+StyleSheet,
+ Text, 
+ View, 
+ TouchableHighlight, 
+ TouchableOpacity,
+ FlatList} from 'react-native';
 import { bookIcon, calendarIcon, questionIcon, externalLinkIcon } from '../icons/AboutPageIcons.js';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -34,9 +40,13 @@ class AboutMe extends Component {
                 onPress={() => this.props.navigation.navigate('Book')}
                 renderItem={({item}) => {
                     return (
-                      <TouchableHighlight onPress={() => this.props.navigation.navigate(`${item.page}`)}>
-                        <Text >{item.icon}{item.key}</Text>
-                      </TouchableHighlight>
+                        <TouchableOpacity 
+                          style={styles.buttonsStyle} 
+                          onPress={() => this.props.navigation.navigate(`${item.page}`)}
+                        >
+                          {item.icon}
+                        <Text style={styles.mappedTextStyle}>{item.key}</Text>
+                      </TouchableOpacity>
                     )
                 }}
               />
@@ -83,11 +93,20 @@ class AboutMe extends Component {
   },
     listItem: {
       flex:1,
-      justifyContent: 'center' 
+      justifyContent: 'center'
     },
     text: {
       fontSize: 20,
-    }
+    },
+    buttonsStyle:{
+      alignItems: 'center',
+      flexDirection:'row',
+      marginTop: 5, 
+    },
+    mappedTextStyle: {
+      fontSize: 18,
+      color: 'black'
+    },
   
   });
   
