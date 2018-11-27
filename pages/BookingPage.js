@@ -1,7 +1,8 @@
 import React ,{ Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView, Animated } from 'react-native';
+import { StyleSheet ,Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView, Animated } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {TextInput } from 'react-native-paper';
+import {TextInput, Checkbox} from 'react-native-paper';
+// import { CheckBox } from 'react-native-elements';
 import TextArea from './BookingSubComp/TextArea.js';
 
 class BookingPage extends Component {
@@ -12,6 +13,7 @@ class BookingPage extends Component {
         email: '',
         address: '',
         message: '',
+        checked: false
     }
     static navigationOptions = {
         title: 'Book',
@@ -21,13 +23,39 @@ class BookingPage extends Component {
         this.setState({ message });
     }
     render(){
+        const { checked } = this.state
         return(
             <LinearGradient colors={['#985EC2', '#4D73D5', '#0080D3','#0087BF','#008A9E','#00897A']} style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <KeyboardAvoidingView styles={{flex: 1}} 
                         behavior = 'padding'  enabled>
-                        <View style={styles.innerView}>
-                            <Text>This is the booking page</Text>
+                        <View style={styles.title}>
+
+                        </View>
+                        <View style={styles.appointmentInfo}>
+
+                        </View>
+                        <View style={{flexDirection: 'row'}} >
+                            <View style={{width:130, borderWidth: 1, flexDirection: 'row', alignItems:'center'}}>
+                                <Checkbox
+                                    style={{borderWidth:1}}
+                                    status={checked ? 'checked' : 'unchecked'}
+                                    onPress={() => { this.setState({ checked: !checked }); }}
+                                />
+                                <Text>Home Visit</Text>
+                            </View>
+                            <View style={{width: 170, borderWidth: 1, flexDirection: 'row', alignItems:'center'}}>
+                                <Checkbox
+                                    status={checked ? 'checked' : 'unchecked'}
+                                    onPress={() => { this.setState({ checked: !checked }); }}
+                                />
+                                <Text>SKype Consultation</Text>
+                            </View>
+
+                        </View>
+                        
+                        <View style={styles.form}>
+                            
                             <TextInput
                                 style={styles.input}
                                 label={<Text style={{color: 'white'}}>First name</Text>}
@@ -141,13 +169,34 @@ const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
     },
+    title: {
+        // flex: 4,
+        borderWidth: 1,
+        height: 60
+    },
+    appointmentInfo: {
+        // flex: 1,
+        borderWidth: 1,
+        height: 100
+    },
+    siwtchVisit: {
+        flex: 1,
+        borderWidth: 1,
+        height: 40
+    },
+    swicthSkype: {
+        flex: 1,
+        borderWidth: 1,
+        height: 40
+    },
     container: {
       flex: 1,
       alignItems: 'center'
     },
-    innerView: {
+    form: {
         flex: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        borderWidth: 1
     },
     input: {
         backgroundColor: 'transparent',
