@@ -1,9 +1,11 @@
-import React ,{ Component } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet ,Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView, Animated } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextInput, Checkbox} from 'react-native-paper';
 // import { CheckBox } from 'react-native-elements';
 import TextArea from './BookingSubComp/TextArea.js';
+import Title from './BookingSubComp/Title.js';
+import TitleInfoMsg from './BookingSubComp/TitleInfoMsg.js';
 
 class BookingPage extends Component {
     state =  {
@@ -12,8 +14,7 @@ class BookingPage extends Component {
         phoneNumber: '',
         email: '',
         address: '',
-        message: '',
-        checked: false
+        message: ''
     }
     static navigationOptions = {
         title: 'Book',
@@ -23,39 +24,16 @@ class BookingPage extends Component {
         this.setState({ message });
     }
     render(){
-        const { checked } = this.state
         return(
+            
             <LinearGradient colors={['#985EC2', '#4D73D5', '#0080D3','#0087BF','#008A9E','#00897A']} style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <KeyboardAvoidingView styles={{flex: 1}} 
                         behavior = 'padding'  enabled>
-                        <View style={styles.title}>
-
-                        </View>
-                        <View style={styles.appointmentInfo}>
-
-                        </View>
-                        <View style={{flexDirection: 'row'}} >
-                            <View style={{width:130, borderWidth: 1, flexDirection: 'row', alignItems:'center'}}>
-                                <Checkbox
-                                    style={{borderWidth:1}}
-                                    status={checked ? 'checked' : 'unchecked'}
-                                    onPress={() => { this.setState({ checked: !checked }); }}
-                                />
-                                <Text>Home Visit</Text>
-                            </View>
-                            <View style={{width: 170, borderWidth: 1, flexDirection: 'row', alignItems:'center'}}>
-                                <Checkbox
-                                    status={checked ? 'checked' : 'unchecked'}
-                                    onPress={() => { this.setState({ checked: !checked }); }}
-                                />
-                                <Text>SKype Consultation</Text>
-                            </View>
-
-                        </View>
-                        
+                        <Title />
+                        <TitleInfoMsg />
                         <View style={styles.form}>
-                            
+                           
                             <TextInput
                                 style={styles.input}
                                 label={<Text style={{color: 'white'}}>First name</Text>}
@@ -106,21 +84,22 @@ class BookingPage extends Component {
                                 onChangeText={address => this.setState({ address })}
                                 theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
                             />
-                            <View style={styles.textAreaContainer}>
+                            {/* <View style={styles.textAreaContainer}>
                                 {this.props.children}
                                 <TextArea onChange={this.changeHandler} />
-                            </View>
+                            </View> */}
 
-                            <View style={styles.buttonContainer}>
-                                <TouchableHighlight 
-                                    style={styles.submitButton}
-                                    // onPress={()=> this.submitDetails()}
-                                    >
-                                    <Text>Submit</Text>
-                                </TouchableHighlight>
-                            </View>
-                        
                         </View>
+
+                        <View style={styles.buttonContainer}>
+                            <TouchableHighlight 
+                                style={styles.submitButton}
+                                // onPress={()=> this.submitDetails()}
+                                >
+                                <Text>Submit</Text>
+                            </TouchableHighlight>
+                        </View>
+
                     </KeyboardAvoidingView>
                 </ScrollView>
             </LinearGradient>
@@ -195,8 +174,7 @@ const styles = StyleSheet.create({
     },
     form: {
         flex: 1,
-        backgroundColor: 'transparent',
-        borderWidth: 1
+        backgroundColor: 'transparent'
     },
     input: {
         backgroundColor: 'transparent',
