@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet ,Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView, Animated } from 'react-native';
+import { StyleSheet ,Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextInput, Checkbox} from 'react-native-paper';
 // import { CheckBox } from 'react-native-elements';
 import TextArea from './BookingSubComp/TextArea.js';
 import Title from './BookingSubComp/Title.js';
 import TitleInfoMsg from './BookingSubComp/TitleInfoMsg.js';
+import EnterDeialsMsg from './BookingSubComp/EnterDetailsMsg.js';
 
 class BookingPage extends Component {
     state =  {
@@ -25,13 +26,18 @@ class BookingPage extends Component {
     }
     render(){
         return(
-            
-            <LinearGradient colors={['#985EC2', '#4D73D5', '#0080D3','#0087BF','#008A9E','#00897A']} style={styles.container}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+            <SafeAreaView style={{flex: 1, backgroundColor:'purple'}}>
+            <LinearGradient colors={['#985EC2', '#4D73D5', '#0080D3','#0087BF','#008A9E','#00897A']} style={{flex:1}}>
+                <View style={styles.container}>
+                <ScrollView 
+                    showsVerticalScrollIndicator={false}
+                    bounces={false}
+                    >
                     <KeyboardAvoidingView styles={{flex: 1}} 
                         behavior = 'padding'  enabled>
                         <Title />
                         <TitleInfoMsg />
+                        <EnterDeialsMsg />
                         <View style={styles.form}>
                            
                             <TextInput
@@ -102,7 +108,9 @@ class BookingPage extends Component {
 
                     </KeyboardAvoidingView>
                 </ScrollView>
+                </View>
             </LinearGradient>
+            </SafeAreaView>
         );
     };
     submitDetails() {
@@ -172,6 +180,12 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center'
     },
+    viewContainer:{
+        flexDirection:'row',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+        flex: 1
+    },
     form: {
         flex: 1,
         backgroundColor: 'transparent'
@@ -200,7 +214,7 @@ const styles = StyleSheet.create({
         // borderColor: 'red',
         alignItems: 'center',
         marginTop: width * .05,
-        height: 30
+        height: 60
     },
     submitButton: {
         alignItems: 'center',
