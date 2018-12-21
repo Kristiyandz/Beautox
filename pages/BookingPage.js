@@ -19,7 +19,7 @@ class BookingPage extends Component {
     }
     static navigationOptions = {
         title: 'Book',
-        headerStyle: { backgroundColor: '#AB5EC2'}
+        headerStyle: { backgroundColor: '#AB5EC2'},
     }
     changeHandler = (message) => {
         this.setState({ message });
