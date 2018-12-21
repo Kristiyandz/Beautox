@@ -5,24 +5,69 @@ StyleSheet,
  View, 
  TouchableHighlight, 
  TouchableOpacity,
- FlatList} from 'react-native';
+ FlatList,
+ Platform } from 'react-native';
 import { bookIcon, calendarIcon, questionIcon, externalLinkIcon } from '../icons/AboutPageIcons.js';
 import LinearGradient from 'react-native-linear-gradient';
 
 
 
 class AboutMe extends Component {
+
+    state = {
+      avatarLayout: {
+        width: 0,
+        height: 0,
+        borderRadius: 0,
+        backgroundColor: '#712084'
+      },
+      innerCircleLayout: {
+        width: 0,
+        height: 0,
+        borderRadius: 0,
+        backgroundColor: 'green',
+        position: 'absolute'
+      }
+    }
+
+    getAvatarBoxDimensions(layout){
+      const { x, y, width, height } = layout;
+       this.setState({
+         avatarLayout: {
+          width: height,
+          height: height,
+          borderRadius: height / 2,
+          backgroundColor: '#712084'
+         }
+        
+      });
+    }
+    setInnerCircleDimensions(layout){
+      const { height } = layout;
+      this.setState({
+        innerCircleLayout: {
+          width: height - 20,
+          height: height - 20,
+          borderRadius: (height - 20) / 2,
+          backgroundColor: 'green',
+          position: 'absolute'
+        }
+      });
+    }
     static navigationOptions = {
       title: "About Me",
       headerStyle: { backgroundColor: '#712084'}
     }
     render() {
+      if(Platform.OS === 'android'){
+
+      }
       return (
         <LinearGradient colors={['#712084', '#4050B2', '#0073CC', '#0091D3', '#00ABC9']} style={styles.container}>
           <View style={styles.container}>
-            <View style={styles.topBox}>
-            <View style={styles.circleOuter} />
-              <View style={styles.circle} />
+            <View style={styles.topBox} onLayout={(event)=>this.getAvatarBoxDimensions(event.nativeEvent.layout)}>
+            <View style={this.state.avatarLayout} onLayout={(event)=>this.setInnerCircleDimensions(event.nativeEvent.layout)} />
+              <View style={this.state.innerCircleLayout} />
               
             </View>
             <View style={styles.middleBox}>
@@ -66,7 +111,8 @@ class AboutMe extends Component {
       flex:3,
       backgroundColor: 'transparent',
       justifyContent:'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      borderWidth: 1
     },
     middleBox: {
       flex:1,
@@ -78,19 +124,19 @@ class AboutMe extends Component {
       padding: 20
       
     },
-    circle: {
-      width: 190,
-      height: 190,
-      borderRadius: 190/2,
-      backgroundColor: 'green',
-      position: 'absolute'
-  },
-    circleOuter: {
-      width: 220,
-      height: 220,
-      borderRadius: 220/2,
-      backgroundColor: '#712084'
-  },
+  //   circle: {
+  //     width: 160,
+  //     height: 160,
+  //     borderRadius: 160/2,
+  //     backgroundColor: 'green',
+  //     position: 'absolute'
+  // },
+  //   circleOuter: {
+  //     width: 180,
+  //     height: 180,
+  //     borderRadius: 180/2,
+  //     backgroundColor: '#712084'
+  // },
     listItem: {
       flex:1,
       justifyContent: 'center'
