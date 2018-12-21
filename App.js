@@ -1,5 +1,6 @@
 // Modules
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator, TransitionConfig} from 'react-navigation';
+import { Easing, Animated } from 'react-native';
 
 // Pages
 import Home from './pages/HomePage.js';
@@ -17,6 +18,15 @@ const AppScreens = createStackNavigator({
   Availability: AvailabilityPage,
   Faq: FaqPage,
   Links: UsefulLinksPage
+},
+{
+  transitionConfig:()=>({
+    transitionSpec: {
+      duration: 0,
+      easing: Easing.out(Easing.poly(4)),
+      timing: Animated.timing
+    }
+  })
 });
 
 // Create route container
