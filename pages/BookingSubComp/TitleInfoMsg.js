@@ -21,7 +21,7 @@ const TitleInfoMsg = () => {
                 data={[
                   {key: ' +44 744 123 123', icon: phoneIcon},
                   {key: ' nelroseashton@gmail.com', icon: emailIcon},
-                  {key: ' +44 744 123 123', icon: whatsAppIcon}
+                  {key: ' +44 744 123 124', icon: whatsAppIcon}
                 ]}
                 renderItem={({item}) => {
                     return (
