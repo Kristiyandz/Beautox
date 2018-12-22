@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet ,Text, View, TouchableHighlight, ScrollView, Dimensions, KeyboardAvoidingView, SafeAreaView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextInput, Checkbox} from 'react-native-paper';
+import DateTimePickerTester from './BookingSubComp/DateAndTimePicker.js';
 // import { CheckBox } from 'react-native-elements';
 import TextArea from './BookingSubComp/TextArea.js';
 import Title from './BookingSubComp/Title.js';
@@ -9,13 +10,19 @@ import TitleInfoMsg from './BookingSubComp/TitleInfoMsg.js';
 import EnterDeialsMsg from './BookingSubComp/EnterDetailsMsg.js';
 
 class BookingPage extends Component {
+    constructor(props) {
+        super(props)
+    
+        this._setDate = this._setDate.bind(this)
+    }
     state =  {
         firstName: '',
         lastName: '',
         phoneNumber: '',
         email: '',
         address: '',
-        message: ''
+        postCode: '',
+        dateTime: ''
     }
     static navigationOptions = {
         title: 'Book',
@@ -23,6 +30,9 @@ class BookingPage extends Component {
     }
     changeHandler = (message) => {
         this.setState({ message });
+    }
+    _setDate(selectedDate){
+        this.setState({ date: selectedDate});
     }
     render(){
         return(
@@ -90,6 +100,17 @@ class BookingPage extends Component {
                                 onChangeText={address => this.setState({ address })}
                                 theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
                             />
+                            <TextInput
+                                style={styles.input}
+                                label={<Text style={{color: 'white'}}>Post code</Text>}
+                                mode="flat"
+                                placeholder="Enter post code..."
+                                value={this.state.text}
+                                underlineColor="rgba(255,255,255,0.3)"
+                                onChangeText={postCode => this.setState({ postCode })}
+                                theme={{colors:{ placeholder: 'rgba(255,255,255,0.3)'}}}
+                            />
+                            <DateTimePickerTester _setDate={this._setDate}/>
                             {/* <View style={styles.textAreaContainer}>
                                 {this.props.children}
                                 <TextArea onChange={this.changeHandler} />
@@ -100,7 +121,7 @@ class BookingPage extends Component {
                         <View style={styles.buttonContainer}>
                             <TouchableHighlight 
                                 style={styles.submitButton}
-                                // onPress={()=> this.submitDetails()}
+                                onPress={()=> this.submitDetails()}
                                 >
                                 <Text>Submit</Text>
                             </TouchableHighlight>
@@ -115,7 +136,7 @@ class BookingPage extends Component {
     };
     submitDetails() {
 
-        const { firstName, lastName, phoneNumber, email, address, message} = this.state;
+        const { firstName, lastName, phoneNumber, email, address, postCode, dateTime} = this.state;
 
         const payload = {
             firstName: firstName,
@@ -123,7 +144,8 @@ class BookingPage extends Component {
             phoneNumber: phoneNumber,
             email: email,
             address: address,
-            message: message
+            postCode: postCode,
+            dateTime: dateTime
         };
         const dataToSend = {
             method: 'POST',
@@ -134,13 +156,15 @@ class BookingPage extends Component {
             body: JSON.stringify(payload)
         };
 
-        fetch('some ednpoint', dataToSend)
+        fetch('https://dqkrql7q39.execute-api.eu-west-1.amazonaws.com/dev/book', dataToSend)
             .then((answer) => answer.json())
             .then((data) => {
                 if(data){
                     // open the confirm page
+                    console.log('Success')
                 } else {
                     // display error message
+                    console.log('fail');
                 };
             });
             /*
